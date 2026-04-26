@@ -25,6 +25,10 @@
                 <span class="input-group-text" id="visible-addon">Date of Birth</span>
                 <input type="date" class="form-control" name="dob" value="<%=authorInfo[0].ISOdob%>" placeholder="Date of Birth" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
             </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Date of Death</span>
+                <input type="date" class="form-control" name="dod" value="<%=authorInfo[0].ISOdod%>" placeholder="Date of Death" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sex" <%=(authorInfo[0].sex == 'F') ? "checked" : "" %> value="F">
                 <label class="form-check-label">F</label>
@@ -32,6 +36,18 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="sex" <%=(authorInfo[0].sex == 'M') ? "checked" : "" %> value="M">
                 <label class="form-check-label">M</label>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Profession</span>
+                <input type="text" class="form-control" name="profession" value="<%=authorInfo[0].profession%>" placeholder="Profession" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Country</span>
+                <input type="text" class="form-control" name="country" value="<%=authorInfo[0].country%>" placeholder="Country" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Portrait Link</span>
+                <input type="text" class="form-control" name="portrait" value="<%=authorInfo[0].portrait%>" placeholder="Portrait LinkPortrait Link" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
             </div>
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Biography" name="bio" id="bio" style="max-width: fit-content;"><%=authorInfo[0].biography%></textarea>
