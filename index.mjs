@@ -186,15 +186,19 @@ app.get('/updateAuthor', isAuthenticated, async (req, res) => {
 
 // rewrite update author
 app.post('/updateAuthor', isAuthenticated, async (req, res) => {
-	let { firstName, lastName, dob, sex, bio, authorId } = req.body;
+	let { firstName, lastName, dob, dod, sex, profession, country, portrait, bio, authorId } = req.body;
 	let sql = `UPDATE authors
 				  SET firstName = ?,
 				  lastName = ?,
 				  dob = ?,
+				  dod = ?,
 				  sex = ?,
+				  profession = ?,
+				  country = ?,
+				  portrait = ?,
 				  biography = ?
 				  WHERE authorId = ?`;
-	let sqlParams = [firstName, lastName, dob || null, sex, bio, authorId];
+	let sqlParams = [firstName, lastName, dob || null, dod || null, sex, profession, country, portrait, bio, authorId];
 	const [rows] = await pool.query(sql, sqlParams);
 	res.redirect('/authors');
 });
