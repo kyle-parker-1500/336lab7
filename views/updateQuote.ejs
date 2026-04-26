@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Update Quote</title>
 </head>
 <body>
-    <h1> Update Quote </h1>
+    <%-include('partials/nav.ejs')%>
 
-    Caegory: <%=quoteInfo[0].category%> <br>
-    AuthorId: <%=quoteInfo[0].authorId%> <br>
-    
-    <form action="/updateQuote" method="POST">
+    <h1 class="m-5"> Update Quote </h1>
 
-        <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
+    <div class="m-5">
+        <form action="/updateQuote" method="POST">
+            <input type="hidden" name="quoteId" value="<%=quoteInfo[0].quoteId%>">
 
-        Quote: <textarea name="quote"><%=quoteInfo[0].quote%></textarea><br>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Biography" name="quote" id="quote" style="max-width: fit-content;"><%=quoteInfo[0].quote%></textarea>
+                <label for="quote">Quote</label>
+            </div>
 
-        Category: 
-        <select name="category">
-            <!-- List of categories must come from the db -->
-            <option>Motivational</option>
-        </select>
-        <br>
+            <select class="form-select" name="category" aria-label="category" style="max-width: fit-content;">
+                <!-- List of categories comes from the db -->
+                <option value="">Select Quote</option>
+                <% for (let i of categories) { %>
+                    <option <%=(quoteInfo[0].category == i.category)?"selected":""%> value="<%=i.category%>">
+                        <%=i.category%>
+                    </option>
+                <% } %>
+            </select>
+            <select class="form-select" name="authorId" aria-label="authors" style="max-width: fit-content;">
+                <!-- List of authors comes from the db -->
+                <option value="">Select Author</option>
+                <% for (let i of authorList) { %>
+                    <option <%=(quoteInfo[0].authorId == i.authorId) ? "selected" : ""%> value="<%=i.authorId%>">
+                        <%=i.firstName%> <%=i.lastName%>
+                    </option>
+                <% } %>
+            </select>
 
-        Author: 
-        <select name="authorId">
-            <!-- List of authors must come from the db -->
-            <option value="">Select Author</option>
-            <% for (let i of authorList) { %>
-                <option 
-                <%=(quoteInfo[0].authorId == i.authorId)?"selected":""%>
-                 value="<%=i.authorId%>"> <%=i.firstName%> <%=i.lastName%>
-            <% } %>
-        </select>
-        <br>
+            <button class="btn btn-success">Update Quote!</button>
+        </form>
+    </div>
 
-        <button> Update Quote! </button>
-
-    </form>
-
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

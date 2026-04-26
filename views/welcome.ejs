@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('partials/header.ejs')%>
+    <title>Welcome Screen</title>
+</head>
+<body class="text-center">
+    <%-include('partials/nav.ejs')%>
+
+    <h1 class="m-5">Welcome!</h1>
+    
+    <form action="/logout">
+        <button class="btn btn-danger">
+            Logout
+        </button>
+    </form>
+
+    <%-include('partials/footer.ejs')%>
+</body>
+</html>

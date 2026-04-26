@@ -1,37 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 7: Famous Quotes - Admin Section </title>
+    <%-include('partials/header.ejs')%>
+    <title>Lab 7: Famous Quotes - Admin Section</title>
 </head>
-<body>
+<body class="text-center">
+    <%-include('partials/nav.ejs')%>
     
     <h1> Admin Section </h1>
+        
+    <div class="">
+        <form action="/addAuthor" method="GET">
+            <button class="btn btn-success"> Add Authors </button>
+        </form>
 
+        <br>
 
-    <form action="/addAuthor" method="GET">
-        <button> Add Authors </button>
-    </form>
+        <form action="/addQuote">
+            <button class="btn btn-success"> Add Quotes </button>
+        </form>
 
-    <br>
+        <br>
 
-    <form action="/addQuote">
-        <button> Add Quotes </button>
-    </form>
+        <form action="/authors" method="GET">
+            <button class="btn btn-success"> All Authors </button>
+        </form>
 
-    <br>
+        <br>
 
-    <form action="/authors" method="GET">
-        <button> All Authors </button>
-    </form>
+        <form action="/quotes">
+            <button class="btn btn-success"> All Quotes </button>
+        </form>
+    </div>
 
-    <br>
-
-    <form action="/quotes">
-        <button> All Quotes </button>
-    </form>
-
-
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

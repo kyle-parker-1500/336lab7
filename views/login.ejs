@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%-include('partials/header.ejs')%> 
+    <title>Login Screen</title>
+
+    <style>
+        .loginDiv{
+        position:relative;
+        display:inline-block;
+        }
+
+        .loginIcon {
+        position:absolute;
+        right:5px;
+        top:3px;
+        cursor:pointer;
+        }
+    </style>
+</head>
+<body class="text-center">
+
+    <h1 class="m-5"> Login </h1>
+    <form action="/login" method="POST">
+        Username:
+        <div class="loginDiv">
+            <input type="text" name="username">
+            <span class="bi bi-person loginIcon"></span>
+        </div><br><br>
+
+        Password:
+        <div class="loginDiv">
+            <input type="password" id="pwd" name="password">
+            <span class="bi bi-eye loginIcon" id="eyeIcon"></span>
+        </div><br><br>
+
+        <button class="btn btn-success">Login</button>
+    </form>
+    
+    <%-include('partials/footer.ejs')%>
+
+    <script>
+        const eyeIcon = document.querySelector("#eyeIcon");;
+        eyeIcon.addEventListener("click", () => {
+        const isHidden = pwd.type === "password";
+        pwd.type = (isHidden)? "text" : "password";
+        eyeIcon.classList.toggle("bi-eye", !isHidden);
+        eyeIcon.classList.toggle("bi-eye-slash", isHidden);
+        });
+    </script>
+</body>
+</html>

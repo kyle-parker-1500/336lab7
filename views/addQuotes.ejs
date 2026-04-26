@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Add Quotes</title>
 </head>
 <body>
-    <h1> Adding a New Quote</h1>
+    <%-include('partials/nav.ejs')%>
 
-    <form action="/newQuote" method="POST">
+    <h1 class="m-5"> Adding a New Quote</h1>
 
-        Quote: <textarea name="quote"></textarea><br>
+    <div class="m-5">
+        <form action="/newQuote" method="POST">
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Quote" name="quote" id="quote" style="max-width: fit-content;"></textarea>
+                <label for="quote">Quote</label>
+            </div>
+            <select class="form-select" name="category" aria-label="category" style="max-width: fit-content;">
+                <!-- List of categories must come from the db -->
+                <option value="">Select Category</option>
+                <% for (let i of categories) { %>
+                    <option value="<%=i.category%>">
+                        <%=i.category%>
+                    </option>
+                <% } %>
+            </select>
+            <select class="form-select" name="authorId" aria-label="authors" style="max-width: fit-content;">
+                <!-- List of categories must come from the db -->
+                <option value="">Select Author</option>
+                <% for (let i of authors) { %>
+                    <option value="<%=i.authorId%>"><%=i.firstName%> <%=i.lastName%></option>
+                <% } %>
+            </select>
+            <button class="btn btn-success">Add Quote!</button>
+        </form>
+    </div>
 
-        Category: 
-        <select name="category">
-            <!-- List of categories must come from the db -->
-            <option>Motivational</option>
-        </select>
-        <br>
-
-        Author: 
-        <select name="authorId">
-            <!-- List of categories must come from the db -->
-            <option value="1">Albert Einstein</option>
-        </select>
-        <br>
-
-        <button> Add Quote! </button>
-
-    </form>
-
-
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

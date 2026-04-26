@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Add Author</title> 
 </head>
 <body>
-    
-    <h1> Adding a New Author </h1>
+    <%-include('partials/nav.ejs')%>
 
-    <form action="/addAuthor" method="POST">
+    <h1 class="m-5"> Adding a New Author </h1>
 
-        First Name: <input type="text" name="firstName"> <br>
-        Last Name: <input type="text" name="lastName"> <br>
-        Date of Birth:  <input type="date" name="dob"> <br>
-        Biography: <textarea name="bio"></textarea> <br>
+    <div class="m-5">
+        <form action="/addAuthor" method="POST">
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">First Name</span>
+                <input type="text" class="form-control" name="firstName" placeholder="First Name" aria-label="firstName" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Last Name</span>
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name" aria-label="lastName" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Date of Birth</span>
+                <input type="date" class="form-control" name="dob" placeholder="Date of Birth" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Date of Death</span>
+                <input type="date" class="form-control" name="dod" placeholder="Date of Death" aria-label="dod" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" value="F">
+                <label class="form-check-label">F</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" value="M">
+                <label class="form-check-label">M</label>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Profession</span>
+                <input type="text" class="form-control" name="profession" placeholder="Profession" aria-label="profession" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Country</span>
+                <input type="text" class="form-control" name="country" placeholder="Country" aria-label="country" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Portrait Link</span>
+                <input type="text" class="form-control" name="portrait" placeholder="Portrait Link" aria-label="portrait" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Biography" name="bio" id="bio" style="max-width: fit-content;"></textarea>
+                <label for="floatingTextarea">Biography</label>
+            </div>
 
-        <button> Add Author! </button>
+            <button class="btn btn-success"> Add Author! </button>
 
-    </form>
+        </form>
+    </div>
 
-
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Quotes</title>
 </head>
 <body>
-    <h1> Quotes </h1>
+    <%-include('partials/nav.ejs')%>
+    <h1 class="m-5"> All Quotes </h1>
     
-
-    <% for (let i of quotes) { %>
-
-       <a href="/updateQuote?quoteId=<%=i.quoteId%>"> Update </a>
-       <a href=""> Delete </a>
-         <%=i.quote%> <br>
-
-    <% } %>    
-
+    <div class="m-5 fs-5">
+        <% for (let i of quotes) { %>
+            <div class="p-1">
+                <b><%=i.firstName%> <%=i.lastName%>:</b><br>
+                <%=i.quote%><br>
+                <a href="/updateQuote?quoteId=<%=i.quoteId%>" class="btn btn-warning"> Update </a>
+                <a href="/deleteQuote?quoteId=<%=i.quoteId%>" class="btn btn-danger"> Delete </a>
+                <br>
+            </div>
+        <% } %>    
+    </div>
+        
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

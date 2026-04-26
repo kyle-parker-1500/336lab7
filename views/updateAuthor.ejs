@@ -1,39 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Update Author</title>
 </head>
 <body>
+    <%-include('partials/nav.ejs')%>
     
-    <h1> Updating Author </h1>
+    <h1 class="m-5"> Updating Author </h1>
 
-    <form action="/updateAuthor" method="POST">
-        <input type="hidden" name="authorId" value="<%= authorInfo[0].authorId %>">
-        First Name: 
-        <input type="text" name="firstName" value="<%= authorInfo[0].firstName %>"> <br>
-        Last Name: 
-        <input type="text" name="lastName" value="<%= authorInfo[0].lastName %>"> <br>
-        Date of Birth:  <input type="date" name="dob" value="<%= authorInfo[0].ISOdob %>"> <br>
-        Sex:
-        <label><input type="radio" 
-            <% if (authorInfo[0].sex == 'F') { %>
-             checked 
-            <% } %>
-            value="F" name="sex"> F </label>
-        <label><input type="radio" 
-           
-            <%=(authorInfo[0].sex == 'M')?"checked":""%> 
-            
-            value="M" name="sex"> M </label> <br>
+    <div class="m-5">
+        <form action="/updateAuthor" method="POST">
+            <input type="hidden" name="authorId" value="<%= authorInfo[0].authorId %>">
 
-        Biography: <textarea name="bio"></textarea> <br>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">First Name</span>
+                <input type="text" class="form-control" name="firstName" placeholder="First Name" value="<%=authorInfo[0].firstName%>" aria-label="firstName" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Last Name</span>
+                <input type="text" class="form-control" name="lastName" placeholder="Last Name" value="<%=authorInfo[0].lastName%>" aria-label="lastName" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="input-group">
+                <span class="input-group-text" id="visible-addon">Date of Birth</span>
+                <input type="date" class="form-control" name="dob" value="<%=authorInfo[0].ISOdob%>" placeholder="Date of Birth" aria-label="dob" aria-describedby="visible-addon" style="max-width: fit-content;">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" <%=(authorInfo[0].sex == 'F') ? "checked" : "" %> value="F">
+                <label class="form-check-label">F</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sex" <%=(authorInfo[0].sex == 'M') ? "checked" : "" %> value="M">
+                <label class="form-check-label">M</label>
+            </div>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Biography" name="bio" id="bio" style="max-width: fit-content;"><%=authorInfo[0].biography%></textarea>
+                <label for="floatingTextarea">Biography</label>
+            </div>
 
-        <button> Update Author! </button>
+            <button class="btn btn-success" style="max-width: fit-content;">Update Author!</button>
+        </form>
+    </div>
 
-    </form>
-
-
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>

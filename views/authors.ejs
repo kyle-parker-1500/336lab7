@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <%-include('partials/header.ejs')%>
+    <title>Authors</title>
 </head>
 <body>
+    <%-include('partials/nav.ejs')%>
 
-    <h1> All Authors </h1>
+    <h1 class="m-5"> All Authors </h1>
 
-     <% for (let i of authors) { %>
- 
-      <a href="/updateAuthor?authorId=<%= i.authorId %>">Update</a>
+        
+    <div class="m-5">
+        <% for (let i of authors) { %>
+            <a class="btn btn-warning m-1" href="/updateAuthor?authorId=<%= i.authorId %>">Update</a>
+            <a class="btn btn-danger m-1" href="/deleteAuthor?authorId=<%= i.authorId %>">Delete</a>
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#author-<%=i.authorId%>">
+                View <%=i.firstName%> <%=i.lastName%>
+            </button>
 
-       <%= i.firstName %> <%= i.lastName %> <br>
-    <% } %>
+            <!-- Modal -->
+            <div class="modal fade" id="author-<%=i.authorId%>" tabindex="-1" aria-labelledby="authorLabel-<%=i.authorId%>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="title-<%=i.authorId%>"><%=i.firstName%> <%=i.lastName%></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <img class="img-fluid" src="<%=i.portrait%>" alt="<%=i.firstName%> <%=i.lastName%>"><br>
+                            
+                            <b>Country:</b><br>
+                            <%=i.country%><br> 
+                            
+                            <b>Profession:</b><br>
+                            <%=i.profession%><br>
+                            
+                            <b>Date of Birth:</b><br>
+                            <%=i.ISOdob%><br>
+
+                            <b>Date of Death:</b><br>
+                            <%=i.ISOdod%><br>
+
+                            <b>Biography:</b><br>
+                            <%=i.biography%><br>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a class="btn btn-warning m-1" href="/updateAuthor?authorId=<%= i.authorId %>">Update</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+        <% } %>
+    </div>
+        
+    <%-include('partials/footer.ejs')%>
 </body>
 </html>
